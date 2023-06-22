@@ -398,6 +398,8 @@ class Cfg(PrefixProto, cli=False):
         ref_env = 0
         pos = [10, 0, 6]  # [m]
         lookat = [11., 5, 3.]  # [m]
+        # pos = [56.9,  91.62, 0.16]
+        # lookat = [56.9+3,  91.62, 0.16+3]
 
     class sim(PrefixProto, cli=False):
         dt = 0.005

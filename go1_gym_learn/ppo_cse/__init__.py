@@ -133,6 +133,14 @@ class Runner:
 
         tot_iter = self.current_learning_iteration + num_learning_iterations
         for it in range(self.current_learning_iteration, tot_iter):
+            
+            if it!=0:
+                if it == 1:
+                    iter_time = learn_time
+                else:
+                    iter_time = iter_time * 0.99 + learn_time * 0.01
+                eta_ = learn_time * (tot_iter-it)
+                print("estimated time left: ", eta_ / 60, "min", end='\r') 
             start = time.time()
             # Rollout
             with torch.inference_mode():

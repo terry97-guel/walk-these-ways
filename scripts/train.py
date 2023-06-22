@@ -4,9 +4,11 @@ def train_go1(headless=True):
     assert isaacgym
     import torch
 
+      
     from go1_gym.envs.base.legged_robot_config import Cfg
-    from go1_gym.envs.go1.go1_config import config_go1
-    from go1_gym.envs.go1.velocity_tracking import VelocityTrackingEasyEnv
+    # from go1_gym.envs.go1.go1_config import config_go1
+    from go1_gym.envs.minicheetah.minicheetah_config import config_minicheetah
+    from go1_gym.envs.minicheetah.velocity_tracking import VelocityTrackingEasyEnv
 
     from ml_logger import logger
 
@@ -16,7 +18,7 @@ def train_go1(headless=True):
     from go1_gym_learn.ppo_cse.ppo import PPO_Args
     from go1_gym_learn.ppo_cse import RunnerArgs
 
-    config_go1(Cfg)
+    config_minicheetah(Cfg)
 
     Cfg.commands.num_lin_vel_bins = 30
     Cfg.commands.num_ang_vel_bins = 30
@@ -204,7 +206,7 @@ def train_go1(headless=True):
     Cfg.commands.binary_phases = True
     Cfg.commands.gaitwise_curricula = True
 
-    env = VelocityTrackingEasyEnv(sim_device='cuda:0', headless=False, cfg=Cfg)
+    env = VelocityTrackingEasyEnv(sim_device='cuda:0', headless=headless, cfg=Cfg)
 
     # log the experiment parameters
     logger.log_params(AC_Args=vars(AC_Args), PPO_Args=vars(PPO_Args), RunnerArgs=vars(RunnerArgs),
@@ -253,4 +255,4 @@ if __name__ == '__main__':
                 """, filename=".charts.yml", dedent=True)
 
     # to see the environment rendering, set headless=False
-    train_go1(headless=False)
+    train_go1(headless=True)

@@ -5,7 +5,7 @@ from params_proto import Meta
 from go1_gym.envs.base.legged_robot_config import Cfg
 
 
-def config_go1(Cnfg: Union[Cfg, Meta]):
+def config_minicheetah(Cnfg: Union[Cfg, Meta]):
     _ = Cnfg.init_state
 
     _.pos = [0.0, 0.0, 0.34]  # x,y,z [m]
@@ -37,7 +37,7 @@ def config_go1(Cnfg: Union[Cfg, Meta]):
     _.decimation = 4
 
     _ = Cnfg.asset
-    _.file = '{MINI_GYM_ROOT_DIR}/resources/robots/go1/urdf/go1.urdf'
+    _.file = '{MINI_GYM_ROOT_DIR}/resources/robots/mini_cheetah/urdf/mini_cheetah.urdf'
     _.foot_name = "foot"
     _.penalize_contacts_on = ["thigh", "calf"]
     _.terminate_after_contacts_on = ["base"]
@@ -69,7 +69,7 @@ def config_go1(Cnfg: Union[Cfg, Meta]):
     _ = Cnfg.env
     _.num_observations = 42
     _.observe_vel = False
-    _.num_envs = 2000
+    _.num_envs = 1000
 
     _ = Cnfg.commands
     _.lin_vel_x = [-1.0, 1.0]
