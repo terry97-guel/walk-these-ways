@@ -1,0 +1,216 @@
+<mujoco model="canineV4 with head">
+  <!-- 
+knee
+-160 deg ~ -30 deg
+
+hip pitch
+-72.2 deg ~ 126 deg
+
+front left hip roll, back left hip roll
+-25 deg~ nan
+
+front right hip roll, back right hip roll
+25 deg~ nan
+   -->
+  <compiler angle="radian" meshdir="./mesh/" autolimits="true" />
+  <default />
+  <asset>
+    <!-- Mesh files in stl files -->
+    <mesh name="base_link_with_head" file="base_link_with_head.stl" scale="0.001 0.001 0.001" />
+    <mesh name="FL_Hip_1" file="FL_Hip_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="FL_thigh_1" file="FL_thigh_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="FL_calf_1" file="FL_calf_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="FR_Hip_1" file="FR_Hip_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="FR_thigh_1" file="FR_thigh_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="FR_calf_1" file="FR_calf_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="HL_Hip_1" file="HL_Hip_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="HL_thigh_1" file="HL_thigh_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="HL_calf_1" file="HL_calf_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="HR_Hip_1" file="HR_Hip_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="HR_thigh_1" file="HR_thigh_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="HR_calf_1" file="HR_calf_1.stl" scale="0.001 0.001 0.001" />
+  </asset>
+
+  <!-- World body -->
+  <worldbody>
+
+    <!-- Base body -->
+    <body name="base" pos="0 0 0.5" euler="0 0 0">
+      <joint type="free" name="base" />
+
+      <geom size="0.0005 0.0005 0.0005" type="box" contype="0" conaffinity="0" group="1" density="0" />
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0 0.5 0.8 0.9"
+        mesh="base_link_with_head" />
+      <geom type="mesh" rgba="0 0.5 0.8 0.9" mesh="base_link_with_head" name="base_link_with_head" />
+
+      <!-- Front Left Hip -->
+      <body name="FL_hip" pos="0.185 0.065 0" gravcomp="0">
+        <inertial pos="0.0589752 -0.0161309 -9.47071e-05" quat="0.517132 0.519741 0.47874 0.482962"
+          mass="0.7498" diaginertia="0.00108453 0.000706219 0.000561341" />
+        <joint name="FL_HIP" pos="0 0 0" axis="1 0 0" range="-0.44 1.92"/>
+        <geom pos="-0.185613 -0.065216 -0.000494" type="mesh" contype="0" conaffinity="0" group="1"
+          density="0" rgba="0.2 0.2 0.2 1" mesh="FL_Hip_1" />
+        <geom pos="-0.185613 -0.065216 -0.000494" type="mesh" rgba="0.2 0.2 0.2 1" mesh="FL_Hip_1"
+          name="FL_Hip_1" />
+
+        <!-- Front Left Thigh -->
+        <body name="FL_thigh" pos="0.07 -0.003 0" gravcomp="0">
+          <inertial pos="-0.00529548 0.0558637 -0.0273956"
+            quat="0.897148 0.129613 0.00487942 0.422258" mass="1.6223"
+            diaginertia="0.00768217 0.00758193 0.00167571" />
+          <joint name="FL_THIGH" pos="0 0 0" axis="0 1 0" range="-1.257 2.199"/>
+          <geom pos="-0.256107 -0.062095 -0.000475" type="mesh" contype="0" conaffinity="0"
+            group="1" density="0" rgba="0.2 0.2 0.2 1" mesh="FL_thigh_1" />
+          <geom pos="-0.256107 -0.062095 -0.000475" type="mesh" rgba="0.2 0.2 0.2 1"
+            mesh="FL_thigh_1" name="FL_thigh_1" />
+
+          <!-- Front Left Knee -->
+          <body name="FL_calf" pos="0 0.084 -0.23" gravcomp="0">
+            <inertial pos="0.000313047 0.0186639 -0.118059"
+              quat="0.716616 0.00855373 0.00439541 0.697402" mass="0.4049"
+              diaginertia="0.004172 0.00415457 7.10586e-05" />
+            <joint name="FL_KNEE" pos="0 0 0" axis="0 1 0" range="-2.7925 -0.5236"/>
+            <geom pos="-0.256219 -0.146 0.228834" type="mesh" contype="0" conaffinity="0" group="1"
+              density="0" rgba="0.9 0.9 0.9 1" mesh="FL_calf_1" />
+            <geom pos="-0.256219 -0.129439 0.228834" type="mesh" rgba="0.9 0.9 0.9 1"
+              mesh="FL_calf_1" name="FL_calf_1" />
+          </body>
+        </body>
+      </body>
+
+      <!-- Front Right Hip -->
+      <body name="FR_hip" pos="0.185 -0.065 0" gravcomp="0">
+        <inertial pos="0.0590307 0.0159274 9.24777e-05" quat="0.517132 0.519741 0.47874 0.482962"
+          mass="0.7498" diaginertia="0.00108453 0.000706219 0.000561341" />
+        <joint name="FR_HIP" pos="0 0 0" axis="1 0 0" range="-1.92 0.44"/>
+        <geom pos="-0.185389 0.06478 0.000488" type="mesh" contype="0" conaffinity="0" group="1"
+          density="0" rgba="0.2 0.2 0.2 1" mesh="FR_Hip_1" />
+        <geom pos="-0.185389 0.06478 0.000488" type="mesh" rgba="0.2 0.2 0.2 1" mesh="FR_Hip_1"
+          name="FR_Hip_1" />
+
+        <!-- Front Right Thigh -->
+        <body name="FR_thigh" pos="0.07 0.003 0" gravcomp="0">
+          <inertial pos="-0.00548743 -0.0555191 -0.0280258"
+            quat="0.897148 0.129613 0.00487942 0.422258" mass="1.6223"
+            diaginertia="0.00768217 0.00758193 0.00167571" />
+          <joint name="FR_THIGH" pos="0 0 0" axis="0 1 0" range="-1.257 2.199"/>
+          <geom pos="-0.255894 0.061902 0.000472" type="mesh" contype="0" conaffinity="0" group="1"
+            density="0" rgba="0.2 0.2 0.2 1" mesh="FR_thigh_1" />
+          <geom pos="-0.255894 0.061902 0.000472" type="mesh" rgba="0.2 0.2 0.2 1" mesh="FR_thigh_1"
+            name="FR_thigh_1" />
+
+          <!-- Front Right Knee -->
+          <body name="FR_calf" pos="0 -0.084 -0.23" gravcomp="0">
+            <inertial pos="-0.00181083 -0.0173317 -0.118256"
+              quat="0.716616 0.00855373 0.00439541 0.697402" mass="0.4049"
+              diaginertia="0.004172 0.00415457 7.10586e-05" />
+            <joint name="FR_KNEE" pos="0 0 0" axis="0 1 0" range="-2.7925 -0.5236"/>
+            <geom pos="-0.255778 0.146 0.230555" type="mesh" contype="0" conaffinity="0" group="1"
+              density="0" rgba="0.9 0.9 0.9 1" mesh="FR_calf_1" />
+            <geom pos="-0.255778 0.126555 0.230555" type="mesh" rgba="0.9 0.9 0.9 1"
+              mesh="FR_calf_1" name="FR_calf_1" />
+          </body>
+        </body>
+      </body>
+
+      <!-- Back Left Hip -->
+      <body name="HL_hip" pos="-0.185 0.065 0" gravcomp="0">
+        <inertial pos="-0.0590308 -0.0159273 -9.23874e-05" quat="0.517132 0.519741 0.47874 0.482962"
+          mass="0.7498" diaginertia="0.00108453 0.000706219 0.000561341" />
+        <joint name="HL_HIP" pos="0 0 0" axis="1 0 0" range="-0.44 1.92"/>
+        <geom pos="0.185387 -0.065854 -0.000501" type="mesh" contype="0" conaffinity="0" group="1"
+          density="0" rgba="0.2 0.2 0.2 1" mesh="HL_Hip_1" />
+        <geom pos="0.185387 -0.065854 -0.000501" type="mesh" rgba="0.2 0.2 0.2 1" mesh="HL_Hip_1"
+          name="HL_Hip_1" />
+
+        <!-- Back Left Thigh -->
+        <body name="HL_thigh" pos="-0.07 -0.003 0" gravcomp="0">
+          <inertial pos="-0.00434792 0.0558625 -0.027441"
+            quat="0.897148 0.129613 0.00487942 0.422258" mass="1.6223"
+            diaginertia="0.00768217 0.00758193 0.00167571" />
+          <joint name="HL_THIGH" pos="0 0 0" axis="0 1 0" range="-1.257 2.199"/>
+          <geom pos="0.255892 -0.062976 -0.000485" type="mesh" contype="0" conaffinity="0" group="1"
+            density="0" rgba="0.2 0.2 0.2 1" mesh="HL_thigh_1" />
+          <geom pos="0.255892 -0.062976 -0.000485" type="mesh" rgba="0.2 0.2 0.2 1"
+            mesh="HL_thigh_1" name="HL_thigh_1" />
+          
+          <!-- Back Left Knee -->
+          <body name="HL_calf" pos="0 0.084 -0.23" gravcomp="0">
+            <inertial pos="0.00443655 0.0186565 -0.117977"
+              quat="0.716616 0.00855373 0.00439541 0.697402" mass="0.4049"
+              diaginertia="0.004172 0.00415457 7.10586e-05" />
+            <joint name="HL_KNEE" pos="0 0 0" axis="0 1 0" range="-2.7925 -0.5236"/>
+            <geom pos="0.25578 -0.15 0.228824" type="mesh" contype="0" conaffinity="0" group="1"
+              density="0" rgba="0.9 0.9 0.9 1" mesh="HL_calf_1" />
+            <geom pos="0.25578 -0.13032 0.228824" type="mesh" rgba="0.9 0.9 0.9 1" mesh="HL_calf_1"
+              name="HL_calf_1" />
+          </body>
+        </body>
+      </body>
+
+      <!-- Back Right Hip -->
+      <body name="HR_hip" pos="-0.185 -0.065 0" gravcomp="0">
+        <inertial pos="-0.0589754 0.016131 9.48046e-05" quat="0.517132 0.519741 0.47874 0.482962"
+          mass="0.7498" diaginertia="0.00108453 0.000706219 0.000561341" />
+        <joint name="HR_HIP" pos="0 0 0" axis="1 0 0" range="-1.92 0.44"/>
+        <geom pos="0.185611 0.064142 0.000481" type="mesh" contype="0" conaffinity="0" group="1"
+          density="0" rgba="0.2 0.2 0.2 1" mesh="HR_Hip_1" />
+        <geom pos="0.185611 0.064142 0.000481" type="mesh" rgba="0.2 0.2 0.2 1" mesh="HR_Hip_1"
+          name="HR_Hip_1" />
+
+        <!-- Back Right Thigh -->
+        <body name="HR_thigh" pos="-0.07 0.003 0" gravcomp="0">
+          <inertial pos="-0.00450231 -0.0554893 -0.0278179"
+            quat="0.897148 0.129613 0.00487942 0.422258" mass="1.6223"
+            diaginertia="0.00768217 0.00758193 0.00167571" />
+          <joint name="HR_THIGH" pos="0 0 0" axis="0 1 0" range="-1.257 2.199"/>
+          <geom pos="0.256105 0.06102 0.000462" type="mesh" contype="0" conaffinity="0" group="1"
+            density="0" rgba="0.2 0.2 0.2 1" mesh="HR_thigh_1" />
+          <geom pos="0.256105 0.06102 0.000462" type="mesh" rgba="0.2 0.2 0.2 1" mesh="HR_thigh_1"
+            name="HR_thigh_1" />
+
+          <!-- Back Right Knee -->
+          <body name="HR_calf" pos="0 -0.084 -0.23" gravcomp="0">
+            <inertial pos="0.00230258 -0.0173358 -0.117533"
+              quat="0.716616 0.00855373 0.00439541 0.697402" mass="0.4049"
+              diaginertia="0.004172 0.00415457 7.10586e-05" />
+            <joint name="HR_KNEE" pos="0 0 0" axis="0 1 0" range="-2.7925 -0.5236"/>
+            <geom pos="0.256221 0.145 0.230545" type="mesh" contype="0" conaffinity="0" group="1"
+              density="0" rgba="0.9 0.9 0.9 1" mesh="HR_calf_1" />
+            <geom pos="0.256221 0.125674 0.230545" type="mesh" rgba="0.9 0.9 0.9 1" mesh="HR_calf_1"
+              name="HR_calf_1" />
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <!-- Exclude contact information -->
+  <contact>
+    <exclude body1="HR_hip" body2="base" />
+    <exclude body1="HL_hip" body2="base" />
+    <exclude body1="FR_hip" body2="base" />
+    <exclude body1="FL_hip" body2="base" />
+    <exclude body1="FR_thigh" body2="base" />
+    <exclude body1="FL_thigh" body2="base" />
+    <exclude body1="HR_thigh" body2="base" />
+    <exclude body1="HL_thigh" body2="base" />
+  </contact>
+
+  <!-- Actuators -->
+  <actuator>
+    <motor name="FL_HIP" ctrllimited="true" ctrlrange="-9.0 9.0" joint="FL_HIP" />
+    <motor name="FL_THIGH" ctrllimited="true" ctrlrange="-9.0 9.0" joint="FL_THIGH" />
+    <motor name="FL_KNEE" ctrllimited="true" ctrlrange="-10.0 10.0" joint="FL_KNEE" />
+    <motor name="FR_HIP" ctrllimited="true" ctrlrange="-9.0 9.0" joint="FR_HIP" />
+    <motor name="FR_THIGH" ctrllimited="true" ctrlrange="-9.0 9.0" joint="FR_THIGH" />
+    <motor name="FR_KNEE" ctrllimited="true" ctrlrange="-10.0 10.0" joint="FR_KNEE" />
+    <motor name="HL_HIP" ctrllimited="true" ctrlrange="-9.0 9.0" joint="HL_HIP" />
+    <motor name="HL_THIGH" ctrllimited="true" ctrlrange="-9.0 9.0" joint="HL_THIGH" />
+    <motor name="HL_KNEE" ctrllimited="true" ctrlrange="-10.0 10.0" joint="HL_KNEE" />
+    <motor name="HR_HIP" ctrllimited="true" ctrlrange="-9.0 9.0" joint="HR_HIP" />
+    <motor name="HR_THIGH" ctrllimited="true" ctrlrange="-9.0 9.0" joint="HR_THIGH" />
+    <motor name="HR_KNEE" ctrllimited="true" ctrlrange="-10.0 10.0" joint="HR_KNEE" />
+  </actuator>
+
+</mujoco>

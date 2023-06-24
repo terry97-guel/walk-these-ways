@@ -1,0 +1,9 @@
+<mujoco model="go1 scene">
+
+  <!-- Model -->
+  <include file="./go1.xml" />
+
+  <!-- Floor and Sky -->
+  <include file="../../object/floor_sky.xml" />
+
+</mujoco>
