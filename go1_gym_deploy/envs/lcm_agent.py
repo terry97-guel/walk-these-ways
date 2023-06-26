@@ -6,7 +6,7 @@ import torch
 import cv2
 
 from go1_gym_deploy.lcm_types.pd_tau_targets_lcmt import pd_tau_targets_lcmt
-
+from go1_gym_deploy.utils.cheetah_state_estimator import StateEstimator
 lc = lcm.LCM("udpm://239.255.76.67:7667?ttl=255")
 
 
@@ -29,7 +29,7 @@ def class_to_dict(obj) -> dict:
 
 
 class LCMAgent():
-    def __init__(self, cfg, se, command_profile):
+    def __init__(self, cfg, se:StateEstimator, command_profile):
         if not isinstance(cfg, dict):
             cfg = class_to_dict(cfg)
         self.cfg = cfg
