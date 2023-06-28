@@ -6,8 +6,8 @@ def train_go1(headless=True):
 
       
     from go1_gym.envs.base.legged_robot_config import Cfg
-    # from go1_gym.envs.go1.go1_config import config_go1
-    from go1_gym.envs.minicheetah.minicheetah_config import config_minicheetah
+    from go1_gym.envs.go1.go1_config import config_go1
+    # from go1_gym.envs.minicheetah.minicheetah_config import config_minicheetah
     from go1_gym.envs.minicheetah.velocity_tracking import VelocityTrackingEasyEnv
 
     from ml_logger import logger
@@ -18,7 +18,7 @@ def train_go1(headless=True):
     from go1_gym_learn.ppo_cse.ppo import PPO_Args
     from go1_gym_learn.ppo_cse import RunnerArgs
 
-    config_minicheetah(Cfg)
+    config_go1(Cfg)
 
     Cfg.commands.num_lin_vel_bins = 30
     Cfg.commands.num_ang_vel_bins = 30
@@ -163,7 +163,7 @@ def train_go1(headless=True):
     Cfg.commands.gait_duration_cmd_range = [0.5, 0.5]
     Cfg.commands.footswing_height_range = [0.03, 0.35]
     Cfg.commands.body_pitch_range = [-0.4, 0.4]
-    Cfg.commands.body_roll_range = [-0.0, 0.0]
+    Cfg.commands.body_roll_range = [-0.4, 0.4]
     Cfg.commands.stance_width_range = [0.10, 0.45]
     Cfg.commands.stance_length_range = [0.35, 0.45]
 
@@ -178,7 +178,7 @@ def train_go1(headless=True):
     Cfg.commands.limit_gait_duration = [0.5, 0.5]
     Cfg.commands.limit_footswing_height = [0.03, 0.35]
     Cfg.commands.limit_body_pitch = [-0.4, 0.4]
-    Cfg.commands.limit_body_roll = [-0.0, 0.0]
+    Cfg.commands.limit_body_roll = [-0.4, 0.4]
     Cfg.commands.limit_stance_width = [0.10, 0.45]
     Cfg.commands.limit_stance_length = [0.35, 0.45]
 

@@ -52,11 +52,11 @@ class RunnerArgs(PrefixProto, cli=False):
     log_freq = 10
 
     # load and resume
-    resume = False
+    resume = True
     load_run = -1  # -1 = last run
     checkpoint = -1  # -1 = last saved model
-    resume_path = None  # updated from load_run and chkpt
-    resume_curriculum = True
+    resume_path = "runs/gait-conditioned-agility/pretrain-v0/train/025417.456545"  # updated from load_run and chkpt
+    resume_curriculum = False
 
 
 class Runner:
@@ -78,7 +78,8 @@ class Runner:
             from ml_logger import ML_Logger
             loader = ML_Logger(root="http://escher.csail.mit.edu:8080",
                                prefix=RunnerArgs.resume_path)
-            weights = loader.load_torch("checkpoints/ac_weights_last.pt")
+            print("[NOTIFICATION] RESUMING FROM!: ", RunnerArgs.resume_path)
+            weights = torch.load(f"{RunnerArgs.resume_path}/checkpoints/ac_weights_last.pt")
             actor_critic.load_state_dict(state_dict=weights)
 
             if hasattr(self.env, "curricula") and RunnerArgs.resume_curriculum:
